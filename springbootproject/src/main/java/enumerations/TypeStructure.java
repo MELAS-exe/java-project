@@ -1,0 +1,19 @@
+package enumerations;
+
+public enum TypeStructure {
+    MAIRIE,
+    PREFECTURE,
+    SOUS_PREFECTURE,
+    MINISTERE,
+    AMBASSADE,
+    CONSULAT,
+    CENTRE_ADMINISTRATIF,
+    TRIBUNAL,
+    COMMISSARIAT,
+    AGENCE_ADMINISTRATIVE,
+    DIRECTION_NATIONALE,
+    SERVICE_PUBLIC,
+    AUTRE
+}
+
+
