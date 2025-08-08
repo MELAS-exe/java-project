@@ -48,10 +48,10 @@ public class SecurityConfig {
                         ).permitAll()
 
                         // Structures : POST /api/structures => ADMIN
-                        .requestMatchers(HttpMethod.POST, "/api/structures").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/api/structures").hasRole("ADMIN")
 
                         // Structures : POST document => MEMBRE_STRUCTURE
-                        .requestMatchers(HttpMethod.POST, "/api/structures/{id:[\\d]+}/document").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/api/structures/{id:[\\d]+}/document").hasRole("MEMBRE_STRUCTURE")
 
                         // Structures : GET /api/structures/{id} => ADMIN
                         .requestMatchers(HttpMethod.GET, "/api/structures/{id:[\\d]+}").hasRole("ADMIN")
@@ -63,7 +63,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.DELETE, "/api/structures/{id:[\\d]+}").hasRole("ADMIN")
 
                         // MembresStructures : POST, GET, GET by id, DELETE => ADMIN
-                        .requestMatchers(HttpMethod.POST, "/api/membres_structures").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/api/membres_structures").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.GET, "/api/membres_structures").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.GET, "/api/membres_structures/{id:[\\d]+}").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.DELETE, "/api/membres_structures/{id:[\\d]+}").hasRole("ADMIN")
