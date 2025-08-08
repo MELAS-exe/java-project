@@ -14,7 +14,7 @@ import java.util.List;
 public class Structure {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(unique = true)
@@ -22,6 +22,7 @@ public class Structure {
     private String name;
 
     @NotNull(message = "Le type de structure est obligatoire")
+    @Enumerated(EnumType.STRING)
     private TypeStructure type;
 
     private String description;

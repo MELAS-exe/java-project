@@ -12,7 +12,7 @@ import java.time.Duration;
 public class AvailableDoc {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotNull(message = "Le type de document est obligatoire")
@@ -24,7 +24,7 @@ public class AvailableDoc {
     @PositiveOrZero(message = "Les frais doivent être positifs ou nuls")
     private Double fee;               // Prix que la personne doit payer pour obtenir le document
 
-    private Duration processingTime;  // Temps que la structure prend pour livrer le document après la demande
+    private String processingTime;  // Temps que la structure prend pour livrer le document après la demande
 
     private String requirements;      // Conditions nécessaires pour faire la demande du document
 }
