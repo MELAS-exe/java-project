@@ -14,6 +14,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @Configuration
 public class SecurityConfig {
 
+
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
@@ -29,6 +30,9 @@ public class SecurityConfig {
                                 "/webjars/**"
                         ).permitAll()
 
+                        // Login : libre d'accès
+                        .requestMatchers("/api/login").permitAll()
+
                         // Structures : GET publics
                         .requestMatchers(HttpMethod.GET,
                                 "/api/structures",
@@ -37,6 +41,10 @@ public class SecurityConfig {
                                 "/api/structures/region/**",
                                 "/api/structures/available_docs/**",
                                 "/api/structures/filter"
+                        ).permitAll()
+
+                        .requestMatchers(HttpMethod.POST,
+                                "/api/admins"
                         ).permitAll()
 
                         // Structures : POST /api/structures => ADMIN
@@ -62,10 +70,8 @@ public class SecurityConfig {
 
                         // MembresStructures : PUT => ADMIN, MEMBRE_STRUCTURE
                         .requestMatchers(HttpMethod.PUT, "/api/membres_structures/{id:[\\d]+}").hasAnyRole("ADMIN", "MEMBRE_STRUCTURE")
-
-                        // Toute autre requête => authentification requise
-                        .anyRequest().authenticated()
                 )
+                .httpBasic(Customizer.withDefaults())
                 .anonymous(Customizer.withDefaults())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
 
@@ -77,3 +83,4 @@ public class SecurityConfig {
         return new BCryptPasswordEncoder();
     }
 }
+

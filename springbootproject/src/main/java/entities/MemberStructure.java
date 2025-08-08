@@ -23,7 +23,7 @@ public class MemberStructure extends User {
     private Structure structure;
 
     @NotBlank(message = "Le rôle dans la structure est obligatoire")
-    private String RoleInStructure;
+    private String roleInStructure;
 
     public MemberStructure(){
         this.setRole(Role.MEMBRE_STRUCTURE);

@@ -4,6 +4,7 @@ import entities.AvailableDoc;
 import entities.Structure;
 import enumerations.DocumentType;
 import enumerations.TypeStructure;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import repositories.StructureRepository;
@@ -59,9 +60,12 @@ public class StructureService {
     public List<Structure> searchByName(String name){
         return structureRepository.findStructureByNameContainingIgnoreCase(name);
     }
+
+    @Transactional
     public  List<AvailableDoc> getAvailableDocsByStructureId(Long id){
         Structure structure = structureRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Structure not found"));
+
         return structure.getAvailableDocs();
     }
 
